@@ -113,7 +113,7 @@ spec:
       serviceAccount: hcloud-csi
       containers:
         - name: csi-attacher
-          image: k8s.gcr.io/sig-storage/csi-attacher:v3.2.1
+          image: k8s.gcr.io/sig-storage/csi-attacher:v3.4.0
           volumeMounts:
             - name: socket-dir
               mountPath: /run/csi
@@ -123,7 +123,7 @@ spec:
               add: ["SYS_ADMIN"]
             allowPrivilegeEscalation: true
         - name: csi-resizer
-          image: k8s.gcr.io/sig-storage/csi-resizer:v1.2.0
+          image: k8s.gcr.io/sig-storage/csi-resizer:v1.4.0
           volumeMounts:
             - name: socket-dir
               mountPath: /run/csi
@@ -133,7 +133,7 @@ spec:
               add: ["SYS_ADMIN"]
             allowPrivilegeEscalation: true
         - name: csi-provisioner
-          image: k8s.gcr.io/sig-storage/csi-provisioner:v2.2.2
+          image: k8s.gcr.io/sig-storage/csi-provisioner:v3.1.0
           args:
             - --feature-gates=Topology=true
             - --default-fstype=ext4
@@ -189,7 +189,7 @@ spec:
             allowPrivilegeEscalation: true
         - name: liveness-probe
           imagePullPolicy: Always
-          image: k8s.gcr.io/sig-storage/livenessprobe:v2.3.0
+          image: k8s.gcr.io/sig-storage/livenessprobe:v2.7.0
           volumeMounts:
             - mountPath: /run/csi
               name: socket-dir
@@ -232,7 +232,7 @@ spec:
       serviceAccount: hcloud-csi
       containers:
         - name: csi-node-driver-registrar
-          image: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.2.0
+          image: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.0
           args:
             - --kubelet-registration-path=/var/lib/kubelet/plugins/csi.hetzner.cloud/socket
           env:
@@ -294,7 +294,7 @@ spec:
             periodSeconds: 2
         - name: liveness-probe
           imagePullPolicy: Always
-          image: k8s.gcr.io/sig-storage/livenessprobe:v2.3.0
+          image: k8s.gcr.io/sig-storage/livenessprobe:v2.7.0
           volumeMounts:
             - mountPath: /run/csi
               name: plugin-dir
